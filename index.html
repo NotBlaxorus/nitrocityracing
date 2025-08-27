@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nitro City – Birthday Parties for Kids (Grades 1–8) | Stress-Free & Safe</title>
+  
+  <!-- Base styles: tweak these 5 variables to match your brand colors -->
+  <style>
+    :root{
+      /* Dark theme tuned to match current brand look */
+      --nc-primary:#3b82f6;        /* primary accent for buttons (blue) */
+      --nc-accent:#b7f25d;         /* neon green for headings */
+      --nc-dark:#0b0b0d;           /* page background (near black) */
+      --nc-text:#e5e7eb;           /* body text (light gray) */
+      --nc-bg:#000000;             /* true black background */
+      --nc-muted:#9ca3af;          /* secondary text */
+      --nc-surface:#0f1115;        /* card/section bg */
+      --nc-border:#1f2937;         /* borders on dark */
+      --nc-ring: rgba(59,130,246,.35);
+      --maxw: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--nc-bg);color:var(--nc-text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";}
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit}
+    h1,h2,h3{color:var(--nc-accent)}
+    .section-header h2{color:var(--nc-accent)}
+    hr{border:0;border-top:1px solid var(--nc-border)}
+
+    .container{max-width:var(--maxw);margin:0 auto;padding:clamp(16px,3vw,24px);}
+    .grid{display:grid;gap:clamp(16px,3vw,24px)}
+
+    /* Buttons */
+    .btn{appearance:none;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:10px;padding:14px 18px;font-weight:700;line-height:1;text-decoration:none;cursor:pointer;transition:.2s transform ease,.2s box-shadow ease;}
+    .btn:focus-visible{outline:2px solid var(--nc-ring);outline-offset:2px}
+    .btn:hover{transform:translateY(-1px)}
+    .btn:active{transform:translateY(0)}
+    .btn-primary{background:var(--nc-primary);color:#0b1020;box-shadow:0 10px 30px -12px var(--nc-ring);color:#fff}
+    .btn-secondary{background:transparent;color:#fff;border:1px solid var(--nc-border)}
+    .btn-link{background:transparent;color:var(--nc-primary);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+    /* Hero */
+    .hero{position:relative;isolation:isolate}
+    .hero-media{position:relative;border-radius:18px;overflow:hidden}
+    .hero-media img{width:100%;height:clamp(260px,45vw,520px);object-fit:cover}
+    .rounded{border-radius:18px;overflow:hidden}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.75));}
+    .hero-content{position:absolute;inset:0;display:flex;align-items:center}
+    .hero-inner{color:#fff;padding:clamp(16px,3vw,24px);max-width:760px}
+    .eyebrow{display:inline-block;background:#fff;color:#111827;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+    .hero h1{margin:.5rem 0 0;font-size:clamp(28px,5vw,48px);line-height:1.08}
+    .hero p{margin:.75rem 0 1.25rem;font-size:clamp(16px,2.5vw,20px);max-width:60ch}
+    .hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+
+    /* City buttons strip (kept from current page) */
+    .city-cta{margin-top:12px;display:flex;flex-wrap:wrap;gap:10px}
+
+    /* Sections */
+    section{padding:clamp(28px,6vw,64px) 0;border-bottom:1px solid var(--nc-border)}
+    .section-header{display:flex;align-items:center;gap:14px;margin-bottom:clamp(18px,3vw,24px)}
+    .section-header h2{margin:0;font-size:clamp(22px,3.6vw,32px)}
+    .muted{color:var(--nc-muted)}
+
+    .icon-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(16px,3vw,24px)}
+    .card{background:var(--nc-surface);border:1px solid var(--nc-border);border-radius:14px;padding:clamp(14px,2.4vw,18px)}
+    .card h3{margin:8px 0 6px;font-size:18px}
+    .card p{margin:0;color:var(--nc-muted);font-size:15px}
+
+    /* Testimonials */
+    .testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(16px,3vw,24px)}
+    .quote{background:var(--nc-surface);border:1px solid var(--nc-border);border-radius:14px;padding:18px}
+    .quote p{margin:0 0 10px}
+    .quote .name{font-weight:700;color:var(--nc-text)}
+
+    /* Final CTA */
+    .cta{background:linear-gradient(180deg, rgba(16, 18, 24, .9), rgba(10, 11, 15, .9));border-radius:16px;padding:clamp(18px,3.6vw,28px);display:grid;gap:12px;border:1px solid var(--nc-border)}
+    .cta h2{margin:0}
+
+    /* Footer */
+    footer{padding:24px 0;color:var(--nc-muted);font-size:14px;border-top:1px solid var(--nc-border)}
+
+    /* Small helpers */
+    .kicker{font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--nc-primary)}
+    .list{display:grid;gap:10px}
+    .list li{display:flex;gap:10px;align-items:flex-start}
+    .check{width:20px;height:20px;flex:0 0 20px;border-radius:5px;background:var(--nc-accent);display:inline-flex;align-items:center;justify-content:center;color:#0b0b0d;font-size:14px;line-height:1}
+
+    @media (min-width:880px){
+      .hero-inner{padding:32px 40px}
+    }
+  </style>
+</head>
+<body>
+  <header class="container" aria-label="Site header">
+    <a href="/" aria-label="Nitro City home" class="btn btn-link" style="padding-left:0">Nitro City Racing</a>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero container" aria-label="Hero">
+      <div class="hero-media">
+        <img src="placeholder1.png" alt="Kids in helmets smiling with staff assisting at a go-kart track" />
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-content">
+          <div class="hero-inner">
+            <span class="eyebrow">For Moms of Kids 6–13</span>
+            <h1>Stress-Free Birthday Parties, Endless Smiles</h1>
+            <p>We plan the details so you can enjoy the day. Safe, supervised, and age‑appropriate racing with simple party packages, pizza & drinks options, and helpful staff from start to finish.</p>
+            <div class="hero-ctas">
+              <a class="btn btn-primary" href="/book-party">Book Your Party Today</a>
+              <a class="btn btn-secondary" href="/packages">See Packages &amp; Pricing</a>
+            </div>
+
+            <!-- City buttons preserved from current page -->
+            <div class="city-cta" aria-label="City-specific pages">
+              <a class="btn btn-link" href="/rohnert-park">Learn more about Rohnert Park, CA</a>
+              <a class="btn btn-link" href="/fairfield">Learn more about Fairfield, CA</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SAFETY & PEACE OF MIND -->
+    <section aria-labelledby="safety" class="container">
+      <div class="section-header">
+        <span class="kicker">Safety</span>
+        <h2 id="safety">Safety First, Fun Always</h2>
+      </div>
+      <div class="grid" style="grid-template-columns:1.1fr .9fr;align-items:center;gap:clamp(18px,4vw,36px)">
+        <div>
+          <ul class="list">
+            <li><span class="check" aria-hidden="true">✓</span><span>Fully trained staff supervise every race and pit stop.</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>DOT-approved helmets and safety gear included.</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>Racing formats and safety rules tailored to younger drivers.</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>Clean, well-maintained karts and sanitized party spaces.</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>Mandatory safety briefing for all racers; flags explained in kid‑friendly language.</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>Medical and incident procedures in place; first‑aid trained staff on site.</span></li>
+          </ul>
+        </div>
+        <div>
+          <img src="placeholder2.png" alt="Staff helping a child adjust a helmet near karts" class="rounded" />
+        </div>
+      </div>
+    </section>
+
+    <!-- STRESS-FREE PLANNING -->
+    <section aria-labelledby="planning" class="container">
+      <div class="section-header">
+        <span class="kicker">Planning</span>
+        <h2 id="planning">We Handle the Details</h2>
+      </div>
+      <div class="icon-row">
+        <div class="card">
+          <h3>Private Party Room</h3>
+          <p>Bring your cake and decorations—our team helps with setup &amp; cleanup.</p>
+        </div>
+        <div class="card">
+          <h3>Food &amp; Drinks</h3>
+          <p>Pizza & drinks available; our café is open on weekends.</p>
+        </div>
+        <div class="card">
+          <h3>Dedicated Host</h3>
+          <p>A friendly coordinator keeps everything on time so you can relax.</p>
+        </div>
+        <div class="card">
+          <h3>Axe Throwing (12+)</h3>
+          <p>Optional add‑on with a safety briefing before play. Great for older kids and parents to enjoy together.</p>
+        </div>
+        <div class="card">
+          <h3>Flexible Group Sizes</h3>
+          <p>Invite just a few close friends or the whole class—ask about optimal racer counts.</p>
+        </div>
+        <div class="card">
+          <h3>Easy Booking & Reminders</h3>
+          <p>Reserve online in minutes and get helpful reminders so nothing gets missed.</p>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <a class="btn btn-primary" href="/packages">See Packages &amp; Pricing</a>
+      </div>
+    </section>
+
+
+
+    <!-- WHAT'S INCLUDED -->
+    <section aria-labelledby="included" class="container">
+      <div class="section-header">
+        <span class="kicker">What’s Included</span>
+        <h2 id="included">Everything You Need for a Low‑Stress Party</h2>
+      </div>
+      <div class="icon-row">
+        <div class="card">
+          <h3>Race Sessions</h3>
+          <p>Structured heats with clear instructions and staff supervision throughout.</p>
+        </div>
+        <div class="card">
+          <h3>Private Party Space</h3>
+          <p>Reserved table or room for presents, cake, and downtime between races.</p>
+        </div>
+        <div class="card">
+          <h3>Gear & Briefing</h3>
+          <p>Helmets provided, safety talk included, and size guidance for younger racers.</p>
+        </div>
+        <div class="card">
+          <h3>Axe Throwing (12+)</h3>
+          <p>Age‑restricted lanes available as an add‑on; safety briefing provided before play.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section aria-labelledby="how" class="container">
+      <div class="section-header">
+        <span class="kicker">How it Works</span>
+        <h2 id="how">Simple 1‑2‑3 Planning</h2>
+      </div>
+      <ol class="list" style="counter-reset: step;">
+        <li style="list-style:none"><span class="check" aria-hidden="true">1</span><span><strong>Pick a package</strong> that fits your group size and date.</span></li>
+        <li style="list-style:none"><span class="check" aria-hidden="true">2</span><span><strong>Customize</strong> with food, decorations, and add‑ons like extra track time.</span></li>
+        <li style="list-style:none"><span class="check" aria-hidden="true">3</span><span><strong>Show up & enjoy</strong>—our host runs the schedule while you relax.</span></li>
+      </ol>
+    </section>
+
+    <!-- THE KIDS’ EXPERIENCE -->
+    <section aria-labelledby="experience" class="container">
+      <div class="section-header">
+        <span class="kicker">On-Track Fun</span>
+        <h2 id="experience">The Most Fun They’ll Have All Year</h2>
+      </div>
+      <div class="grid" style="grid-template-columns:.9fr 1.1fr;align-items:center;gap:clamp(18px,4vw,36px)">
+        <div>
+          <img src="placeholder3.png" alt="Kids racing go-karts while friends cheer at the finish line" class="rounded" />
+        </div>
+        <div>
+          <ul class="list">
+            <li><span class="check" aria-hidden="true">✓</span><span>Fun beginner races designed for kids 6–13.</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>Spotlight moments for the birthday child—photo-ops included.</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>Engaging off-track activities so no one feels left out.</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>Post‑race podium moment and group photo so the birthday child feels like a champ.</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>Arcade time and mini‑games available between track sessions (venue dependent).</span></li>
+            <li><span class="check" aria-hidden="true">✓</span><span>Optional axe throwing for ages 12+ with required safety briefing (venue dependent).</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section aria-labelledby="faq" class="container">
+      <div class="section-header">
+        <span class="kicker">FAQ</span>
+        <h2 id="faq">Common Questions from Moms</h2>
+      </div>
+      <div class="grid" style="grid-template-columns:1fr;gap:12px">
+        <details class="card"><summary><strong>What ages can race?</strong></summary><p>Packages on this page are tuned for ages 6–13. Younger racers get lower speeds and extra guidance.</p></details>
+        <details class="card"><summary><strong>What should kids wear?</strong></summary><p>Closed‑toe shoes are required. We recommend comfy, fitted clothing; helmets are provided.</p></details>
+        <details class="card"><summary><strong>Can we bring our own cake and decorations?</strong></summary><p>Yes! You’re welcome to bring cake and decor. Please use painter’s tape for walls; confetti is typically not allowed.</p></details>
+        <details class="card"><summary><strong>Do you have food and drink options?</strong></summary><p>Yes—kid‑approved menus and drink bundles are available, or you can bring your own. Check the Packages page for details.</p></details>
+        <details class="card"><summary><strong>Is axe throwing available for kids?</strong></summary><p>Yes—axe throwing is available for ages 12 and up only. A safety briefing is required before play.</p></details>
+        <details class="card"><summary><strong>Are kart speeds limited by age?</strong></summary><p>No. Kart speeds are not limited by age. We tailor race formats and provide instruction to match driver experience and keep everyone safe.</p></details>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS / SOCIAL PROOF -->
+    <section aria-labelledby="reviews" class="container">
+      <div class="section-header">
+        <span class="kicker">Reviews</span>
+        <h2 id="reviews">Why Moms Love Us</h2>
+      </div>
+      <div class="testimonials">
+        <div class="quote">
+          <p>“The staff was amazing—so patient and safety-focused. Our daughter can’t stop talking about it.”</p>
+          <div class="name">— Sarah M.</div>
+        </div>
+        <div class="quote">
+          <p>“Easiest party I’ve ever hosted. They handled everything and the kids had a blast.”</p>
+          <div class="name">— Jessica L.</div>
+        </div>
+        <div class="quote">
+          <p>“Clean facilities, super organized, and genuinely fun for every kid there.”</p>
+          <div class="name">— Priya K.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section aria-labelledby="book" class="container">
+      <div class="cta">
+        <h2 id="book">Book Your Stress-Free Party Now</h2>
+        <p class="muted">Weekend slots go quickly—reserve your date today.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <a class="btn btn-primary" href="/book-party">Reserve Your Date</a>
+          <a class="btn btn-secondary" href="/contact">Talk to a Party Planner</a>
+        </div>
+        <div class="city-cta" aria-label="City-specific pages" style="margin-top:6px">
+          <a class="btn btn-link" href="/rohnert-park">Learn more about Rohnert Park, CA</a>
+          <a class="btn btn-link" href="/fairfield">Learn more about Fairfield, CA</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container" aria-label="Footer">
+    <div>Nitro City Racing • © <span id="y"></span> • All rights reserved.</div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
